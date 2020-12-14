@@ -31,7 +31,7 @@ class ColumnType
     
     public function __construct(string $name, 
                                 string $type, 
-                                int $size, 
+                                int $size = 255, 
                                 bool $primary_key = false,
                                 string $foreign_key = NULL)
     {
