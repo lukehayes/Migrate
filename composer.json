@@ -1,0 +1,10 @@
+{
+    "name": "lukehayes/migrate",
+    "description": "A set of classes to help build migrations",
+    "type": "library",
+    "require-dev": {
+        "symfony/var-dumper": "^5.2"
+    },
+    "license": "MIT",
+    "require": {}
+}
