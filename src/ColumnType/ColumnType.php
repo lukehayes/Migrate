@@ -19,6 +19,11 @@ class ColumnType
     protected ?int $size = NULL;
 
     /**
+     * @var string Whether the id of this column should auto-increment.
+     */
+    protected bool $auto_increment = false;
+
+    /**
      * @var string Whether this column is the primary key or not.
      */
     protected bool $primary_key = false;
@@ -32,8 +37,10 @@ class ColumnType
     public function __construct(string $name, 
                                 string $type, 
                                 int $size = 255, 
+                                bool $auto_increment = false,
                                 bool $primary_key = false,
-                                string $foreign_key = NULL)
+                                string $foreign_key = NULL
+                                )
     {
         $this->name = strtolower($name);
         $this->type = strtolower($type);
@@ -53,6 +60,9 @@ class ColumnType
 
             // Convert the foreign key property to a string if NULL
             if($key == 'foreign_key') $value = $value ? $value : "NULL";
+
+            // Convert the foreign key property to a string if NULL
+            if($key == 'auto_increment') $value = $value ? $value : "false";
 
             $str .= ucfirst($key) . ": " . ucfirst($value) . " | ";
         }
