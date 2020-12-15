@@ -49,6 +49,60 @@ class ColumnType
         $this->foreign_key = $foreign_key;
     }
 
+    /**
+     * Getter for the name property.
+     * @return string
+     */
+    public function getName() : string
+    {
+        return $this->name;
+    }
+
+    /**
+     * Getter for the type property.
+     * @return string
+     */
+    public function getType() : string
+    {
+        return $this->type;
+    }
+
+    /**
+     * Getter for the size property.
+     * @return int
+     */
+    public function getSize() : int
+    {
+        return $this->size;
+    }
+
+    /**
+     * Getter for the primary key property.
+     * @return bool
+     */
+    public function getPrimaryKey() : bool
+    {
+        return $this->primary_key;
+    }
+
+    /**
+     * Getter for the foreign key property.
+     * @return string
+     */
+    public function getForeignKey() : string
+    {
+        return $this->foreign_key;
+    }
+
+    /**
+     * Getter for the auto increment property.
+     * @return bool
+     */
+    public function getAutoIncrement() : bool
+    {
+        return $this->auto_increment;
+    }
+
     public function __toString()
     {
         $str = get_class() . " | ";
@@ -69,5 +123,6 @@ class ColumnType
 
         return $str .= "<br/>";
     }
+
 
 }
