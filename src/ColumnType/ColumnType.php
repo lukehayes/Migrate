@@ -43,7 +43,7 @@ class ColumnType
                                 )
     {
         $this->name = strtolower($name);
-        $this->type = strtolower($type);
+        $this->type = strtoupper($type);
         $this->size = $size;
         $this->primary_key = $primary_key;
         $this->foreign_key = $foreign_key;
