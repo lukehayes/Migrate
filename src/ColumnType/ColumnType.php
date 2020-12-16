@@ -93,6 +93,9 @@ class ColumnType
 
         foreach(get_object_vars($this) as $key => $value)
         {
+            // If the current property is an array ignore it.
+            if(is_array($value)) break;
+
             // Convert the bool value to a string
             if($key == 'primary_key') $value = $value ? 'true' : 'false';
 
@@ -101,12 +104,6 @@ class ColumnType
 
             // Convert the foreign key property to a string if NULL
             if($key == 'auto_increment') $value = $value ? $value : "false";
-
-            foreach($this->typeOptions as $value)
-            {
-                $str .= $value;
-                echo 1;
-            }
 
             $str .= ucfirst($key) . ": " . ucfirst($value) . " | ";
         }
