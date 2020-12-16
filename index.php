@@ -5,11 +5,13 @@ use Migrate\ColumnType\ColumnType;
 use Migrate\Table\Table;
 use Migrate\Migration;
 
-$user_id = new ColumnType("id", "int", );
+
+$user_id = new ColumnType("id", "int", 10, ['AUTO_INCREMENT', 'NOT_NULL'] );
 $username = new ColumnType("username", "varchar", 255);
 $email = new ColumnType("email", "varchar", 255);
 $password = new ColumnType("password", "varchar", 255);
 
+echo $user_id;
 dump($username);
 dump($email);
 
@@ -32,13 +34,17 @@ $m->addTable($usersTable);
 $m->addTable($postsTable);
 
 dump($m);
+dump($m->getTables());
 
 
-$str .= ($m->genType($user_id));
-$str .= ($m->genType($username));
-$str .= ($m->genType($email));
-$str .= ($m->genType($password));
+//$str = "";
+//$str .= ($m->genType($user_id));
+//$str .= ($m->genType($username));
+//$str .= ($m->genType($email));
+//$str .= ($m->genType($password));
 
-$sql = "create table $postsTable->name (" . $str .")";
+//$sql = "create table $postsTable->name (" . $str .");";
 
-dump($sql);
+$m->run();
+
+
