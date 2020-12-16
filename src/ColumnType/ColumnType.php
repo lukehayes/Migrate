@@ -19,34 +19,27 @@ class ColumnType
     protected ?int $size = NULL;
 
     /**
-     * @var string Whether the id of this column should auto-increment.
-     */
-    protected bool $auto_increment = false;
-
-    /**
-     * @var string Whether this column is the primary key or not.
-     */
-    protected bool $primary_key = false;
-
-    /**
      * @var string The name of the table that acts as the foreign key for this column.
      */
     protected ?string $foreign_key = NULL;
+
+    /**
+     * @var array Options like AUTO_INCREMENT etc that apply to this column of the table.
+     */
+    protected $typeOptions;
 
     
     public function __construct(string $name, 
                                 string $type, 
                                 int $size = 255, 
-                                bool $auto_increment = false,
-                                bool $primary_key = false,
+                                $typeOptions = [],
                                 string $foreign_key = NULL
                                 )
     {
         $this->name = strtolower($name);
         $this->type = strtoupper($type);
         $this->size = $size;
-        $this->primary_key = $primary_key;
-        $this->foreign_key = $foreign_key;
+        $this->typeOptions = $typeOptions;
     }
 
     /**
@@ -77,12 +70,12 @@ class ColumnType
     }
 
     /**
-     * Getter for the primary key property.
-     * @return bool
+     * Getter for the type options property.
+     * @return array
      */
-    public function getPrimaryKey() : bool
+    public function getTypeOptions() : array
     {
-        return $this->primary_key;
+        return $this->typeOptions;
     }
 
     /**
@@ -92,15 +85,6 @@ class ColumnType
     public function getForeignKey() : string
     {
         return $this->foreign_key;
-    }
-
-    /**
-     * Getter for the auto increment property.
-     * @return bool
-     */
-    public function getAutoIncrement() : bool
-    {
-        return $this->auto_increment;
     }
 
     public function __toString()
@@ -117,6 +101,12 @@ class ColumnType
 
             // Convert the foreign key property to a string if NULL
             if($key == 'auto_increment') $value = $value ? $value : "false";
+
+            foreach($this->typeOptions as $value)
+            {
+                $str .= $value;
+                echo 1;
+            }
 
             $str .= ucfirst($key) . ": " . ucfirst($value) . " | ";
         }
