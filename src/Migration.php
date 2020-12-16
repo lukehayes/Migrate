@@ -33,16 +33,39 @@ class Migration
      */
     public function genType($column) : string
     {
+        // TODO The counter logic is horrible and needs to be changed.
+        static $counter = 0;
         $str = "";
         $str .= $column->getName() . " ";
         $str .= $column->getType() . "(";
         $str .= $column->getSize();
-        $str .= "),";
+
+        if($counter >= count($this->tables) + 1)
+        {
+            $str .= ")";
+        }else {
+
+            $str .= "), ";
+        }
+
+        $counter++;
 
         return $str;
     }
+
     public function addTable(Table $table) : void
     {
         array_push($this->tables, $table);
     }
+
+    /**
+     * Getter for the Tables array.
+     *
+     * @return array The list of Tables.
+     */
+    public function getTables() : array
+    {
+        return $this->tables;
+    }
+
 }
