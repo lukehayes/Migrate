@@ -19,9 +19,16 @@ class Migration
      */
     public function run()
     {
-        // TODO
-        // Generae SQL syntax form the Table and ColumnType classes,
-        // then run that SQL as a query.
+        // TODO This is just a test.
+        foreach($this->tables as $table)
+        {
+            $sql = "CREATE TABLE $table->name ";
+
+            foreach($table->getColumns() as $column)
+            {
+                $sql .= $this->genType($column);
+            }
+        }
     }
 
     /**
@@ -31,7 +38,7 @@ class Migration
      *
      * @return string The string result
      */
-    public function genType($column) : string
+    private function genType($column) : string
     {
         // TODO The counter logic is horrible and needs to be changed.
         static $counter = 0;
