@@ -45,7 +45,13 @@ class Migration
             $str .= ")";
         }else {
 
-            $str .= "), ";
+            $str .= ")";
+            foreach($column->getTypeOptions() as $option)
+            {
+                $str .= $option . " ";
+            }
+
+            $str .= ",";
         }
 
         $counter++;
